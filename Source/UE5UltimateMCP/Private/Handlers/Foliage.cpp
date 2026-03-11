@@ -150,9 +150,9 @@ public:
 			FFoliageInstance NewInstance;
 			NewInstance.Location = Location;
 			NewInstance.Rotation = Rotation;
-			NewInstance.DrawScale3D = FVector(Scale);
+			NewInstance.DrawScale3D = FVector3f(Scale);
 
-			FoliageInfo->AddInstance(IFA, FoliageType, NewInstance);
+			FoliageInfo->AddInstance(FoliageType, NewInstance);
 			PlacedCount++;
 		}
 
@@ -302,9 +302,8 @@ public:
 		FBox ClearBounds(BoundsMin, BoundsMax);
 		int32 TotalRemoved = 0;
 
-		for (auto& Pair : IFA->GetFoliageInfos())
+		IFA->ForEachFoliageInfo([&](UFoliageType* FoliageType, FFoliageInfo& FoliageInfo) -> bool
 		{
-			FFoliageInfo& FoliageInfo = *Pair.Value;
 			TArray<int32> InstancesToRemove;
 
 			for (int32 Idx = 0; Idx < FoliageInfo.Instances.Num(); ++Idx)
@@ -316,13 +315,14 @@ public:
 				}
 			}
 
-			// Remove in reverse order to maintain indices
-			for (int32 i = InstancesToRemove.Num() - 1; i >= 0; --i)
+			if (InstancesToRemove.Num() > 0)
 			{
-				FoliageInfo.RemoveInstances(IFA, { InstancesToRemove[i] }, true);
-				TotalRemoved++;
+				FoliageInfo.RemoveInstances(InstancesToRemove, true);
+				TotalRemoved += InstancesToRemove.Num();
 			}
-		}
+
+			return true; // continue iteration
+		});
 
 		IFA->MarkPackageDirty();
 

@@ -216,7 +216,7 @@ public:
 		}
 
 		// Add the emitter handle to the system
-		FNiagaraEmitterHandle NewHandle = System->AddEmitterHandle(*EmitterTemplate, FName(*EmitterTemplate->GetName()));
+		FNiagaraEmitterHandle NewHandle = System->AddEmitterHandle(*EmitterTemplate, FName(*EmitterTemplate->GetName()), EmitterTemplate->GetExposedVersion().VersionGuid);
 
 		System->MarkPackageDirty();
 

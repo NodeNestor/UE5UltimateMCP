@@ -534,8 +534,6 @@ public:
 		Binding.ObjectName = WidgetName;
 		Binding.PropertyName = FName(*EventName);
 		Binding.FunctionName = FName(*FunctionName);
-		Binding.SourcePath = FString::Printf(TEXT("%s.%s"), *WidgetName, *EventName);
-
 		WidgetBP->Bindings.Add(Binding);
 
 		FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(WidgetBP);

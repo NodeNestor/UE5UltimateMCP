@@ -1,5 +1,9 @@
 #include "UltimateMCPSubsystem.h"
 #include "UltimateMCPServer.h"
+#include "Tools/MCPToolRegistry.h"
+
+// Destructor must be in .cpp where FUltimateMCPServer is fully defined (TUniquePtr needs complete type)
+UUltimateMCPSubsystem::~UUltimateMCPSubsystem() = default;
 
 // Forward declare tool registration functions (each handler file provides one)
 namespace UltimateMCPTools

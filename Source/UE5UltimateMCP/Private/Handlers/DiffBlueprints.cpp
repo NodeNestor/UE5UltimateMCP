@@ -257,7 +257,7 @@ public:
 // ============================================================
 namespace UltimateMCPTools
 {
-	void RegisterDiffBlueprintTools()
+	void RegisterDiffTools()
 	{
 		auto& R = FMCPToolRegistry::Get();
 		R.Register(MakeShared<FTool_DiffBlueprints>());

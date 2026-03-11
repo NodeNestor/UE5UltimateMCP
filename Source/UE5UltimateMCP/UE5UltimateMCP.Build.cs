@@ -54,6 +54,7 @@ public class UE5UltimateMCP : ModuleRules
 
 			// Sequencer
 			"LevelSequence",
+			"LevelSequenceEditor",
 			"MovieScene",
 			"MovieSceneTracks",
 			"Sequencer",

@@ -20,7 +20,11 @@
 #include "AssetToolsModule.h"
 #include "IAssetTools.h"
 #include "Factories/Factory.h"
+// LevelSequenceEditorBlueprintLibrary requires LevelSequenceEditor module
+// which is an editor plugin — include conditionally
+#if WITH_EDITOR
 #include "LevelSequenceEditorBlueprintLibrary.h"
+#endif
 
 #include "Editor.h"
 #include "Engine/World.h"
@@ -408,10 +412,10 @@ public:
 		}
 
 		// Find or create camera cut track
-		UMovieSceneCameraCutTrack* CameraCutTrack = MovieScene->FindMasterTrack<UMovieSceneCameraCutTrack>();
+		UMovieSceneCameraCutTrack* CameraCutTrack = Cast<UMovieSceneCameraCutTrack>(MovieScene->GetCameraCutTrack());
 		if (!CameraCutTrack)
 		{
-			CameraCutTrack = MovieScene->AddMasterTrack<UMovieSceneCameraCutTrack>();
+			CameraCutTrack = Cast<UMovieSceneCameraCutTrack>(MovieScene->AddCameraCutTrack(UMovieSceneCameraCutTrack::StaticClass()));
 			if (!CameraCutTrack)
 			{
 				return FMCPToolResult::Error(TEXT("Failed to create camera cut track."));
@@ -428,7 +432,7 @@ public:
 			return FMCPToolResult::Error(TEXT("Failed to create camera cut section."));
 		}
 
-		CutSection->SetCameraBindingID(FMovieSceneObjectBindingID(CameraGuid, MovieSceneSequenceID::Root));
+		CutSection->SetCameraBindingID(UE::MovieScene::FFixedObjectBindingID(CameraGuid, MovieSceneSequenceID::Root));
 		CutSection->SetRange(TRange<FFrameNumber>::AtLeast(FrameNumber));
 		CameraCutTrack->AddSection(*CutSection);
 

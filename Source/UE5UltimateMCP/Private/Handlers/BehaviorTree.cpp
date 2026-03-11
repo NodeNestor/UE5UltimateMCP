@@ -427,7 +427,16 @@ public:
 			return FMCPToolResult::Error(TEXT("Failed to create decorator."));
 		}
 
-		TargetNode->Decorators.Add(NewDec);
+		// In UE 5.7, decorators live on FBTCompositeChild (parent-child connections),
+		// not directly on UBTCompositeNode. Add to the first child's decorator list.
+		if (TargetNode->Children.Num() > 0)
+		{
+			TargetNode->Children[0].Decorators.Add(NewDec);
+		}
+		else
+		{
+			return FMCPToolResult::Error(TEXT("Target composite node has no children to attach a decorator to."));
+		}
 		BT->MarkPackageDirty();
 
 		TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();

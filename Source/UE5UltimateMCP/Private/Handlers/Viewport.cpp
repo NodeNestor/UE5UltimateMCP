@@ -16,6 +16,8 @@
 #include "Slate/SceneViewport.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/GameModeBase.h"
+#include "GameFramework/WorldSettings.h"
 #include "Dom/JsonObject.h"
 #include "Dom/JsonValue.h"
 #include "FileHelpers.h"

@@ -282,8 +282,8 @@ public:
 
 		Result->SetStringField(TEXT("nav_data_class"), NavData->GetClass()->GetName());
 
-		// Get bounds
-		FBox NavBounds = NavData->GetNavMeshBounds();
+		// Get bounds (GetNavMeshBounds doesn't exist in UE 5.7; use GetBounds instead)
+		FBox NavBounds = NavData->GetBounds();
 		if (NavBounds.IsValid)
 		{
 			TSharedPtr<FJsonObject> Min = MakeShared<FJsonObject>();

@@ -22,8 +22,9 @@ FString FUltimateMCPServer::UrlDecode(const FString& Encoded)
 		else if (C == TEXT('%') && i + 2 < Encoded.Len())
 		{
 			FString Hex = Encoded.Mid(i + 1, 2);
-			int32 Val = 0;
-			if (FParse::HexNumber(*Hex, (uint32&)Val))
+			TCHAR* End = nullptr;
+			int32 Val = FCString::Strtoi(*Hex, &End, 16);
+			if (End && End != *Hex)
 			{
 				Result += (TCHAR)Val;
 				i += 2;

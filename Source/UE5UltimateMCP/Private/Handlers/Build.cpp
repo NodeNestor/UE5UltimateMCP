@@ -267,22 +267,14 @@ public:
 	{
 		TSharedPtr<FJsonObject> Result = MakeShared<FJsonObject>();
 
-		bool bIsBuilding = GEditor ? GEditor->IsEditorWorldBeingCleanedUp() : false;
-
 		// Check if lighting build is running
 		bool bLightingInProgress = GEditor ? GEditor->IsLightingBuildCurrentlyRunning() : false;
-
 		Result->SetBoolField(TEXT("lighting_build_active"), bLightingInProgress);
 
-		// Check for map build
-		bool bMapBuildInProgress = false;
-		UWorld* World = GEditor ? GEditor->GetEditorWorldContext().World() : nullptr;
-		if (World)
-		{
-			bMapBuildInProgress = FEditorBuildUtils::IsBuildCurrentlyRunning();
-		}
-		Result->SetBoolField(TEXT("map_build_active"), bMapBuildInProgress);
-		Result->SetBoolField(TEXT("any_build_active"), bLightingInProgress || bMapBuildInProgress);
+		// Check for any build (map, lighting, etc.)
+		bool bAnyBuildInProgress = FEditorBuildUtils::IsBuildCurrentlyRunning();
+		Result->SetBoolField(TEXT("map_build_active"), bAnyBuildInProgress);
+		Result->SetBoolField(TEXT("any_build_active"), bLightingInProgress || bAnyBuildInProgress);
 
 		return FMCPToolResult::Ok(Result);
 	}

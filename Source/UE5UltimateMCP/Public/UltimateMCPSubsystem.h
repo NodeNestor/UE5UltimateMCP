@@ -4,9 +4,8 @@
 #include "CoreMinimal.h"
 #include "EditorSubsystem.h"
 #include "Tickable.h"
+#include "UltimateMCPServer.h"
 #include "UltimateMCPSubsystem.generated.h"
-
-class FUltimateMCPServer;
 
 UCLASS()
 class UUltimateMCPSubsystem : public UEditorSubsystem, public FTickableEditorObject
@@ -14,6 +13,8 @@ class UUltimateMCPSubsystem : public UEditorSubsystem, public FTickableEditorObj
 	GENERATED_BODY()
 
 public:
+	virtual ~UUltimateMCPSubsystem();
+
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
