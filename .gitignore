@@ -1,6 +1,5 @@
 reference/
 MCP/node_modules/
-MCP/dist/
 *.o
 *.obj
 Binaries/

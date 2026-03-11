@@ -1,9 +1,6 @@
 {
-  "mcpServers": {
-    "ue5-ultimate": {
-      "command": "node",
-      "args": ["Plugins/UE5UltimateMCP/MCP/dist/index.js"],
-      "env": { "UE_PORT": "9847" }
-    }
+  "ue5": {
+    "command": "node",
+    "args": ["${CLAUDE_PLUGIN_ROOT}/MCP/dist/index.js"]
   }
 }

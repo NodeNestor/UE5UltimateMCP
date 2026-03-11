@@ -18,47 +18,42 @@ The AI uses 158 tools to directly manipulate the editor — creating Blueprints,
 
 **You need:** UE 5.7, Node.js 18+, Claude Code
 
-### 1. Get the plugin into your UE5 project
+### Option 1 — Claude Code Plugin (easiest)
 
-**Option A — Pre-built binary (Blueprint-only projects, no C++ needed):**
+Install as a Claude Code plugin — no manual copying or build steps:
 
-Download the latest release from [Releases](https://github.com/NodeNestor/UE5UltimateMCP/releases). Extract the zip into your project's `Plugins/` folder:
-
-```
-YourGame/
-  Plugins/
-    UE5UltimateMCP/
-      Binaries/
-      Source/
-      UE5UltimateMCP.uplugin
-      MCP/
+```bash
+/plugin marketplace add https://github.com/NodeNestor/nestor-plugins
+/plugin install ue5-ultimate-mcp
 ```
 
-**Option B — From source (C++ projects):**
+Then in your UE5 project folder, just say:
 
+```
+/setup-ue5
+```
+
+Claude will automatically copy the plugin into your project, detect if it's a C++ or Blueprint-only project, and set everything up.
+
+### Option 2 — Manual setup
+
+**1. Get the plugin into your UE5 project**
+
+**Pre-built binary (Blueprint-only projects):** Download from [Releases](https://github.com/NodeNestor/UE5UltimateMCP/releases) and extract into `YourGame/Plugins/UE5UltimateMCP/`.
+
+**From source (C++ projects):**
 ```bash
 git clone https://github.com/NodeNestor/UE5UltimateMCP.git
 cp -r UE5UltimateMCP YourGame/Plugins/UE5UltimateMCP
 ```
 
-The engine will compile it when you open the project.
-
-### 2. Build the TypeScript bridge (one time)
-
-```bash
-cd YourGame/Plugins/UE5UltimateMCP/MCP
-npm install && npm run build
-```
-
-### 3. Tell Claude Code about the plugin
-
-Run this once in your UE project folder:
+**2. Register the MCP server**
 
 ```bash
 claude mcp add ue5 -- node Plugins/UE5UltimateMCP/MCP/dist/index.js
 ```
 
-### 4. Use it
+**3. Use it**
 
 1. Open your project in UE5 — the plugin starts automatically (HTTP server on port 9847)
 2. Open a terminal in the same project folder
