@@ -1,0 +1,19 @@
+{
+  "name": "ue5-ultimate-mcp",
+  "version": "0.1.0",
+  "description": "Ultimate MCP bridge for UE5 — 150+ tools for Blueprints, Materials, World Building, Sequencer, AI, and more",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "@types/node": "^22.0.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "UE5 Ultimate MCP",
+	"Description": "The ultimate AI integration for Unreal Engine — Blueprints, Materials, Animation, World Building, Sequencer, Behavior Trees, Navigation, Niagara, UI, and more. 150+ tools via Model Context Protocol.",
+	"Category": "Editor",
+	"CreatedBy": "NodeNestor",
+	"CreatedByURL": "https://github.com/NodeNestor",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EngineVersion": "5.7.0",
+	"SupportedTargetPlatforms": ["Win64", "Linux", "Mac"],
+	"Modules": [
+		{
+			"Name": "UE5UltimateMCP",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"WhitelistPlatforms": ["Win64", "Linux", "Mac"]
+		}
+	],
+	"Plugins": [
+		{ "Name": "EditorScriptingUtilities", "Enabled": true, "Optional": true },
+		{ "Name": "EnhancedInput", "Enabled": true },
+		{ "Name": "LevelSequenceEditor", "Enabled": true, "Optional": true }
+	]
+}
