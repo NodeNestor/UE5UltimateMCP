@@ -16,36 +16,47 @@ The AI uses 158 tools to directly manipulate the editor — creating Blueprints,
 
 ## Quick Start
 
-### 1. Clone and copy into your UE5 project
+**You need:** UE 5.4+ (5.7 recommended), Node.js 18+, Claude Code
+
+### 1. Get the plugin into your UE5 project
 
 ```bash
 git clone https://github.com/NodeNestor/UE5UltimateMCP.git
 cp -r UE5UltimateMCP YourGame/Plugins/UE5UltimateMCP
 ```
 
-### 2. Build the bridge (one time)
+> **Important:** Your project needs to be a C++ project (not Blueprint-only) since the plugin has C++ source code that compiles with the engine. If you have a Blueprint-only project, add an empty C++ class first: **Tools > New C++ Class > None > Create**. Alternatively, run `scripts/build_plugin.bat` to pre-compile the plugin as a binary — then it works in any project type.
+
+### 2. Build the TypeScript bridge (one time)
+
+The plugin has two parts: C++ code (runs inside UE5) and a TypeScript bridge (translates between Claude and UE5). You need to build the bridge once:
 
 ```bash
 cd YourGame/Plugins/UE5UltimateMCP/MCP
 npm install && npm run build
 ```
 
-### 3. Set up Claude Code
+Or just run the setup script from your project root:
+```bash
+bash Plugins/UE5UltimateMCP/scripts/setup.sh
+```
 
-Run this in your UE project folder (where your `.uproject` file is):
+### 3. Tell Claude Code about the plugin
+
+Run this once in your UE project folder (where your `.uproject` file is):
 
 ```bash
 claude mcp add ue5 -- node Plugins/UE5UltimateMCP/MCP/dist/index.js
 ```
 
-That's it. This tells Claude Code "there's a tool server called `ue5`, run it with Node.js". Claude remembers this for the project.
+This registers the tool server with Claude Code. It remembers it for this project — you don't need to do it again.
 
 ### 4. Use it
 
-1. Open your project in UE5 (the plugin auto-starts)
+1. Open your project in UE5 — the plugin starts automatically (HTTP server on port 9847)
 2. Open a terminal in the same project folder
 3. Run `claude`
-4. Ask it to do things — it now has access to the editor
+4. Ask it to do things — it now has full access to the editor
 
 > **First time?** Try: "Check the server status and tell me how many tools are available"
 
