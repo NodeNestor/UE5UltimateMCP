@@ -1,7 +1,7 @@
 {
   "name": "ue5-ultimate-mcp",
   "description": "Control Unreal Engine 5 from Claude Code — 158 tools for Blueprints, Materials, Sequencer, AI, Niagara, World Gen, and more. Use /setup-ue5 to install the plugin into your current UE5 project.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "NodeNestor"
   },
