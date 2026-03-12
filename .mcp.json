@@ -1,6 +1,8 @@
 {
-  "ue5": {
-    "command": "node",
-    "args": ["${CLAUDE_PLUGIN_ROOT}/MCP/dist/index.js"]
+  "mcpServers": {
+    "ue5": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/MCP/dist/index.js"]
+    }
   }
 }
